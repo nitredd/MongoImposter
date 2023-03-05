@@ -26,11 +26,11 @@ def start_in_mode(cmdline_params)
         r.start
     when 'info'
         port_num = cmdline_params.has_key?(:port) ? cmdline_params[:port] : 27017
-        hoat_name = cmdline_params.has_key?(:host) ? cmdline_params[:host] : 'localhost'
-        si = ServerInfo.new(host: hoat_name, port: port_num)
+        host_name = cmdline_params.has_key?(:host) ? cmdline_params[:host] : 'localhost'
+        si = ServerInfo.new(host: host_name, port: port_num)
         si.start
     else
-        puts 'Invalid start mode. Start with: --mode {client|server}'
+        puts 'Invalid start mode. Start with: --mode {client|server|relay|info}'
     end
 
     # for arg in ARGV
@@ -94,7 +94,8 @@ end
 
 
 #Invoke the main method
-main
-
+# if __FILE__ == $0  # $PROGRAM_NAME
+    main
+# end
 
 #require 'debug'
